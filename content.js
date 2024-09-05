@@ -14,6 +14,10 @@
             exploreGPTsElement.parentElement.insertAdjacentElement('afterend', textBox);
             console.log('Text box added successfully');
 
+            // Add event listener for input changes
+            textBox.addEventListener('input', filterConversations);
+            console.log('Event listener added to text box');
+
             const style = document.createElement('style');
             style.textContent = `
                 #custom-textbox {
@@ -45,6 +49,20 @@
         } else {
             console.log('Explore GPTs element not found');
         }
+    }
+
+    function filterConversations() {
+        const searchTerm = document.getElementById('custom-textbox').value.toLowerCase();
+        const conversationElements = document.querySelectorAll('a[href^="/c/"]');
+
+        conversationElements.forEach(element => {
+            const conversationTitle = element.textContent.toLowerCase();
+            if (conversationTitle.includes(searchTerm)) {
+                element.style.display = '';
+            } else {
+                element.style.display = 'none';
+            }
+        });
     }
 
     function init() {
