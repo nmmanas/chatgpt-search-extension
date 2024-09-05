@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "Chatgpt Conversation Search",
+  "version": "1.0",
+  "description": "This extension allows you to search for conversations in ChatGPT.",
+  "permissions": [
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://chatgpt.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}
